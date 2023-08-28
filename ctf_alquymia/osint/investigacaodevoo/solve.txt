@@ -1,0 +1,7 @@
+Você foi contratado para encontrar discrepancias nos voo do sistema área brasileiro. Fazendo uma analise dos meados de maio de 2023 da aeronave PTB2322, existe uma data que possui uma rota para um destino bem incomum. Sabendo disso, responda a flag ALQ com as seguintes informações:
+
+ALQ{cargo-que-aparece-no-destino--primeiro-nome-do-individuo--hora-da-chegada}
+
+OBS: A resposta estará TODA em minusculo, incluindo a hora. OBS1: Se uma parte da resposta tiver espaços, será separado por - OBS2: A separação de um dado por outro será separado por -- OBS3: A hora deve estar no formato XX:XXvv, sendo vv pm ou am.
+
+ALQ{deputado--luis--12:34pm}

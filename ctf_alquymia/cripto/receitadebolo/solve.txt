@@ -1,0 +1,16 @@
+Ooclaar estava querendo montar uma nova criptografia, mas esqueceu a sequência dos itens que utilizou. Sabendo dos itens utiizados na receita do CyberCheff tente recuperar o valor original utilizado:
+
+To Base64
+Reverse
+Find and Replace
+Rot13
+O valor final obtido foi: YneYPkgV2FIpujf02mZfCY
+
+Ordem:
+
+Reverse
+Rot13 (18)
+From Base64
+Find and Replace (não fez diferença)
+
+ALQ{m1nh@_crpt0}

@@ -1,0 +1,8 @@
+Novamente utilizei o IDAPRO
+
+na ferramenta encontrei uma função chamada flag. Modifiquei o binario
+onde chamava fake para flag e obtive o resultado.
+
+wine oculto.exe
+ALQ{3nxergand0_o_0culto}
+Nao mostrarei a flag tao facil assim!

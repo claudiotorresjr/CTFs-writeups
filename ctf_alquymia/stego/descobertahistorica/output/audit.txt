@@ -1,0 +1,23 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sun Aug 20 12:32:57 2023
+Invocation: foremost -v foto-historica.png 
+Output directory: /home/claudio/Documents/ctf_alquymia/stego/descobertahistorica/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: foto-historica.png
+Start: Sun Aug 20 12:32:57 2023
+Length: 666 KB (682086 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00000000.png 	     666 KB 	          0 	  (794 x 372)
+Finish: Sun Aug 20 12:32:57 2023
+
+1 FILES EXTRACTED
+	
+png:= 1
+------------------------------------------------------------------
+
+Foremost finished at Sun Aug 20 12:32:57 2023

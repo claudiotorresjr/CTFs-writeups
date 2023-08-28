@@ -1,0 +1,2 @@
+strings Alq.pcapng | grep ALQ
+ALQ{W1r3Sh@rK!}

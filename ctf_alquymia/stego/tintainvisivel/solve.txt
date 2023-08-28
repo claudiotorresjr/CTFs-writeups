@@ -1,0 +1,7 @@
+Imagem com escrita invisivel. Fala mal de Java... Encontrei ferramenta em Java
+que esconde mensagem:
+java -jar -Xmx512m diit-1.5.jar
+
+Vários métodos. Blindhide foi o utilizado: estava escrito nos metadados
+
+ALQ{V3lhos_metodos_s4o_os_m3lh0res}

@@ -1,0 +1,8 @@
+fcrackzip -D -p rockyou.txt -v -u  mala.zip
+
+found file 'flag.txt', (size cp/uc     31/    19, flags 1, chk 2346)
+
+
+PASSWORD FOUND!!!!: pw == rockyou
+
+flag: ALQ{s3nha_qu3brad@}

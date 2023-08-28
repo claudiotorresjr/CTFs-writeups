@@ -1,0 +1,24 @@
+Parece que você foi contratatado para analisar um arquivo em anexo que um dos
+seus funcionários recebeu, ele parece estranho e possui um possível link malicioso.
+Analise o arquivo e obtenha a flag.
+
+Descompactando o xlsx, percebi que haviam algumas células hidden e também estavam
+com um style que deixava a formatação do texto invisível. Ao remover a formatação
+e o campo hidden das células, foi possível ver as seguintes strings nas respectivas células:
+
+
+AH1hTw==: A1048576
+K1onVyZdHA==: C3
+JV8qAQ==: L1
+KFQxXCpbOA==: E5
+
+Ao pegar o base64 dessas strings, não tive sucesso pois o resultado ainda parecia
+criptografado. Então realizei a operação XOR no resultado do decode com o valor
+da célula (script solve.py) e obtive o seguinte resultado:
+
+ALQ{
+hidden_
+inf0
+mation}
+
+ALQ{hidden_inf0mation}

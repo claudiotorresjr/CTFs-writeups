@@ -1,0 +1,7 @@
+f-fake-story.png é uma imagem com erro no CRC
+
+pngcheck f-fake-story.png:
+f-fake-story.png  CRC error in chunk IHDR (computed 97a8e1c0, expected 7f1d2b83)
+ERROR: f-fake-story.png
+
+https://ALQ{imagem_0cult@}

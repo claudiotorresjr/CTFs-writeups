@@ -1,0 +1,11 @@
+Na pagina nao existe nada interessante pra ser atacado. Nenhum form funciona.
+
+Procurei o site em wayback machine, para ver se antigamente o site tinha alguma coisa.
+
+Olhando nas URLs relacionadas a https://ctf-mico.alquymia.com.br, encontrei uma pagina que leva
+ao robots.txt. No site original nao temos acesso. No robots.txt tinha:
+User-agent: *
+Disallow: /db-0898343234/
+
+acessando https://ctf-mico.alquymia.com.br/db-0898343234/flag.txt foi possivel encontrar a flag.
+ALQ{hidden_wayback}

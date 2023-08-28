@@ -1,0 +1,15 @@
+Acabei encodando uma string e perdi a senha. Só sei que era númerica e tinha 6 digitos. E agora?
+
+JUVSFWVKHKWUOUIIQJ
+
+Descubra a resposta e a senha pontue utilizando a flag ALQ{resposta}
+
+Busquei vários métodos de criptografia que encodam a partir de uma chave numérica.
+Dentre os métodos, encontrei o Gronsfeld e o Vigenère. Vigenère utiliza somente letras,
+então não foi o suficiente. Já o Gronsfeld utiliza números.
+
+Utilizei a ferramenta online: https://www.boxentriq.com/code-breaking/gronsfeld-cipher
+
+e fiz um teste com a senha 123456 e obtive o seguinte resultado: ISSOAQUIEGRONSFELD
+
+

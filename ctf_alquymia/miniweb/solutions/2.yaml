@@ -1,0 +1,9 @@
+---
+- name: alqCTF
+  hosts: localhost
+
+  tasks:
+    - name: ls
+      command: curl http://bancoalq.com.br/
+      register: resultado_ls
+

@@ -1,0 +1,7 @@
+https://ctf-note.alquymia.com.br/
+
+Depois de fazer o cadastro e login, é possível acessar as notas que criei em:
+https://ctf-note.alquymia.com.br/?page=notes&id=86
+
+Mudando o id, foi possível perceber que o site nao protege de acessar paginas com
+ids de outros usuarios. Ao passar o id=35, vemos: ALQ{1ns3cur3_d1r3cT_0bj3cT_R3f3r3nc3s}

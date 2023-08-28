@@ -1,0 +1,6 @@
+https://www.neteye-blog.com/2021/07/analysis-of-a-dark-web-site/
+sudo apt install socat
+
+socat TCP4-LISTEN:8080,reuseaddr,fork SOCKS4A:127.0.0.1:4g4relhctallxqhfhnectjopmcdw7do2p6afqtnl5xjf7a2oalo65vid.onion:80,socksport=9050
+
+sudo docker run --rm -it milesrichardson/onion-nmap -p 80,443 4g4relhctallxqhfhnectjopmcdw7do2p6afqtnl5xjf7a2oalo65vid.onion

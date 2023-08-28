@@ -1,0 +1,6 @@
+https://ctf-techport.alquymia.com.br/
+
+Ao acessar, tem uma opção de ver o Dashboard. Acessando, aparece que nao tenho permissao.
+Olhando na URL, é possivel ver> auth=false. Mudando pra true, temos a flag: ALQ{3asy_p34sy_4uth_Tru3}
+
+

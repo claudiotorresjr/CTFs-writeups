@@ -1,0 +1,38 @@
+PLAY [alqCTF] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [ls] **********************************************************************
+changed: [localhost]
+
+TASK [saida do ls] *************************************************************
+ok: [localhost] => {
+    "resultado_ls.stdout_lines": [
+        "comiocudecurisoso",
+        "file.yaml",
+        "index.php",
+        "index2.html",
+        "sla.txt",
+        "testando.txt<<<magic",
+        "uploads",
+        "x"
+    ]
+}
+
+TASK [cat] *********************************************************************
+changed: [localhost]
+
+TASK [Exibir saída do comando cat] *********************************************
+ok: [localhost] => {
+    "resultado_cat.stdout_lines": [
+        "ALQ{D3v0ops_4ns1ble_pl4yb00k_Rc3}"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+apos, faço um cat em tudo. sla.txt tinha flag
+
+ALQ{D3v0ops_4ns1ble_pl4yb00k_Rc3}

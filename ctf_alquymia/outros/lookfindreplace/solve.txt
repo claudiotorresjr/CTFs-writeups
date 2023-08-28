@@ -1,0 +1,9 @@
+sed 's/-//g'  LookFindReplace.txt > result
+
+result em site binary to text
+
+Este e um desafio desenvoldido pela comunidade Alquymia, desde j� agradecemos a sua participa��o.
+
+                     E parabens por conseguir concluir esse desafio, aqui est� sua flag:
+
+ALQ{B1n@ry-1s-w0o0nd3rf%%ulL}

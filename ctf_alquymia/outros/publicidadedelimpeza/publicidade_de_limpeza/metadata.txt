@@ -1,0 +1,6 @@
+author: ooclaar
+last-author: ooclaar
+application: Microsoft Excel
+application-version: 16.0300
+created-time: 06/13/2023 21:52:20
+last-saved-time: 06/14/2023 04:17:45

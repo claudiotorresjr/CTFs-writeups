@@ -1,0 +1,4 @@
+nc 45.63.104.42 2331
+51967 (devido num - 0xcafe. quero resultado 1 para passar o resultado de stdin para buf)
+ALQUYMIA
+Parabens, pegue sua flag: ALQ{f1l3_d3script0r_654}

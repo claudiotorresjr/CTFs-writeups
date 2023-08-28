@@ -1,0 +1,21 @@
+O lado oculto da lua
+100
+Cernan: Whooooooooooooo. Young: Você também ouviu aquele som de assobio?
+Cernan: Sim. Soa como – você sabe, música do tipo espaço sideral.
+Young: Eu me pergunto o que é.
+
+Transcrição da NASA
+
+Na busca incansável de uma ferramenta, tentei ver spectograma, tirar ruido,
+inverter um lado (lado direito) e depois juntar novamente com o esquerdo
+para limpar o audio... e nada.
+
+Depois fui atrás de ferramentas que escondem textos em arquivos de audio.
+Encontrei o Stegonaut (https://www.stegonaut.com/), interessante nome para
+um desafio sobre o espaço, não?
+
+Tentei pegar o texto sem especificar uma senha e recebi uma string completamente
+sem sentido. Daí fui testanto palavras chaves sobre o acontecimento, como lua,
+nome dos personagens envolvidos... até chegar no nome da missão em si: apollo10.
+
+Colocando essa senha, tive a flag: ALQ{stegonaut@}

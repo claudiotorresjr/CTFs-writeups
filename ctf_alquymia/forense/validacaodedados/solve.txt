@@ -1,0 +1,5 @@
+Descubra através de uma base de dados quantas informações possuem na base de dados.
+
+Resp1: Qual a quantidade total de registros na base de dados? Resp2: Qual a quantidade de e-mail cadastrados? Resp3: Qual a quantidade de hashs válidos possuem na base de dados?
+
+Junte todas as respostas no seguinte padrão: ALQ{resp1-resp2-resp3}

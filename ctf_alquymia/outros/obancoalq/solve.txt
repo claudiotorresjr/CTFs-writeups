@@ -1,0 +1,59 @@
+Parece que a equipe de desenvolvimento do Alquymia lançou um banco,
+mas o site está oculto juntamente com diversas outras informações importantes.
+Só sobrou o DNS para buscar alguma coisa...
+
+http://bancoalq.com.br/
+
+Primeiramente rodei o comando whois na URL passada
+
+whois bancoalq.com.br
+
+% Copyright (c) Nic.br
+%  The use of the data below is only permitted as described in
+%  full by the Use and Privacy Policy at https://registro.br/upp ,
+%  being prohibited its distribution, commercialization or
+%  reproduction, in particular, to use it for advertising or
+%  any similar purpose.
+%  2023-08-24T12:06:38-03:00 - IP: 187.110.209.74
+
+domain:      bancoalq.com.br
+owner:       Ideacorp Agência de Marketing Ltda
+ownerid:     22.698.883/0001-98
+responsible: Ramon Alonso Costa
+country:     BR
+owner-c:     IDLTD7
+tech-c:      IDLTD7
+nserver:     connie.ns.cloudflare.com
+nsstat:      20230823 AA
+nslastaa:    20230823
+nserver:     ernest.ns.cloudflare.com
+nsstat:      20230823 AA
+nslastaa:    20230823
+saci:        yes
+created:     20230322 #25927574
+changed:     20230322
+expires:     20240322
+status:      published
+
+nic-hdl-br:  IDLTD7
+person:      Ideacorp Ltda
+e-mail:      suporte@ideacorp.com.br
+country:     BR
+created:     20151216
+changed:     20220629
+
+% Security and mail abuse issues should also be addressed to
+% cert.br, http://www.cert.br/ , respectivelly to cert@cert.br
+% and mail-abuse@cert.br
+%
+% whois.registro.br accepts only direct match queries. Types
+% of queries are: domain (.br), registrant (tax ID), ticket,
+% provider, CIDR block, IP and ASN.
+
+Pelo resultado, é possível perceber que bancoalq.com.br é o domínio. Dada essa
+informação, busquei subdomínios existentes com este domínio. Utilizei a ferramenta
+gobuster para fazer a enumeração de vários subdomínios a partir de uma wordlist
+de subdomínios que encontrei em: https://gist.githubusercontent.com/six2dez/a307a04a222fab5a57466c51e1569acf/raw
+
+echo IFGFC63GNRQWOX3POZSXEX3ENZZX2CQ= | base32 -d
+ALQ{flag_over_dns}

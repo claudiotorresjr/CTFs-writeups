@@ -1,0 +1,25 @@
+Se eu tenho as seguintes rotas em um equipamento de rede:
+
+default ------------------- eth0
+192.168.0.0/16 -------- eth1 (192.168.0.1 a 192.168.255.254)
+10.10.0.0/24 ------------ eth2 (10.10.0.1 a 10.10.0.254)
+
+Qual dos IPs da lista em anexo iriam sair pela placa de rede Eth0?
+Adicione os IPs que são de rede interna, separados por virgula e em ordem crescente na flag ALQ{ip,ip}
+
+192.168.0.43 
+192.168.1.24 
+192.168.34.24 
+192.168.34.33 
+192.168.133.133 
+192.168.133.255 
+172.30.0.1  eth0
+182.154.154.30  eth0
+10.10.3.34  eth0
+10.10.0.22 
+10.10.0.23 
+10.10.3.45  eth0
+10.1.1.45  eth0
+23.25.44.53  eth0
+
+ALQ{10.1.1.45,10.10.3.34,10.10.3.45,172.30.0.1}

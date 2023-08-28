@@ -1,0 +1,22 @@
+---
+- name: alqCTF
+  hosts: localhost
+
+  tasks:
+    - name: ls
+      command: ls ..
+      register: resultado_ls
+
+    - name: saida do ls
+      debug:
+        var: resultado_ls.stdout_lines
+
+    - name: cat
+      command: cat ../sla.txt
+      register: resultado_cat
+
+    - name: Exibir saída do comando cat
+      debug:
+        var: resultado_cat.stdout_lines
+        
+

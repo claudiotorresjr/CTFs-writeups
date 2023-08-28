@@ -1,0 +1,15 @@
+Form de login é possível fazer sql injection
+' OR 1=1-- 
+
+Dentro, há uma página e é possível fazer upload de imagem.
+
+e somente os tipos: JPG, JPEG, PNG & GIF files are allowed.
+
+Entao foi criado um arquivo chamado developer.png.php que possui um codigo que abre uma
+shell no servidor via php. O png foi adicionado no filename pois o site faz verificação
+de extensão, e pelo visto faz como: "png in filename" pq nao pegou a extensão php no final.
+
+fazendo: https://ctf-developer.alquymia.com.br/uploads/developer.png.php?cmd=cat%20/flag.txt
+foi possivel pegar a flag.
+
+ALQ{P0UC4VULNPR4MU1TOC0D3}

@@ -1,0 +1,5 @@
+nc ctf-play.alquymia.com.br 3442
+168886144965017 (valor de 0x9999dead9999)
+Parabens, pegue sua flag: ALQ{3ntend3ndo_hex4d3cima1s_3}
+
+ALQ{3ntend3ndo_hex4d3cima1s_3}

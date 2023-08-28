@@ -1,0 +1,6 @@
+Um hacker conseguiu invadir um sistema de câmera de um hospital, mas antes de desconectar um dos funcionários da equipe de TI conseguiu capturar um IP de origem: 177.45.70.184. A partir dessa ividência descubra o ownerid desse IP e responda com a resposta no padrão solicitado. Exemplo: ALQ{respostadapergunta}
+
+
+whois 177.45.70.184 | grep ownerid == 02.558.157/0001-62
+
+ALQ{02.558.157/0001-62}

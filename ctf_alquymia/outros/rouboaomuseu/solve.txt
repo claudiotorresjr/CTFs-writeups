@@ -1,0 +1,11 @@
+A imagem é sobre o inferno de Dante e faz referencia ao 8º circulo do inferno.
+
+O oitavo círculo, “O MALLEBOGE”
+
+Buscando o nome MALLEBOGE, encontrei uma linguagem de programação com esse nome:
+https://pt.wikipedia.org/wiki/Malbolge
+
+Buscando ferramentas online para executar a carta, obtive:
+
+Voce descobriu como chegar ate aqui! Pegue sua flag!
+ALQ{m4lb0lg3_3h_c0isa_d3_l0uco}

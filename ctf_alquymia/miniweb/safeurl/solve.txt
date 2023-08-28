@@ -1,0 +1,13 @@
+No comentario do HTML tinha: config.php
+Acessando normalmente dava:
+You do not have access to this page, it is only available for localhost!
+
+
+Passei o caminho http://127.0.0.1/config.php para a URL no campo:
+Check if a website is legit, phishing or scam website
+
+e obtive:
+
+Status:
+
+ALQ{34sy_S3rv3r_s1d3_r3qu3st_f0rg3ry}You do not have access to this page, it is only available for localhost!

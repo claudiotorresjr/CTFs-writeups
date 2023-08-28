@@ -1,0 +1,8 @@
+exiftool Maos.mp4 mostra infos interessantes, dentre elas:
+Encoded By                      : Q0NZe2ExdWZAdV92X3R0em9ufQ==
+
+decodificando de Base64, tem-se: JJF{h1bm@b_c_aagvu}
+
+chave: jypwav
+
+ALQ{l1br@s_e_legal}

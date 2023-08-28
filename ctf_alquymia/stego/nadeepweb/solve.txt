@@ -1,0 +1,87 @@
+44_45_43_52_59_50_54 nome do arquivo é hexadecimal para: DECRYPT
+descompactei com a senha DECRYPT
+
+1.pdf:
+Tirando os metadados do PDF, tem um arquivo texto com a mensagem: PassPortzeroone
+
+
+2.pdf:
+
+Possui um qrcode com um X na frente. Ao extrair o png do PDF, é possivel acessar
+o qrcode que nos da a sequinte mensagem: Eajsqébj tpyz sggá e hefzp: DrlrTffh0102
+
+Utilizando a mensagem do 1.pdf como senha para decodificar a mensagem do qrcode
+(utilizando vigenere), temos a seguinte resposta: Parabéns aqui está a senha: PassPort0102
+
+Alem do qrcode tinha as seguintes mensagens (que ja decodifiquei abaixo):
+
+Aãb grz anqn ndhv cnen ibpê!!!
+Não tem nada aqui para você!!!
+
+RSBhcXVpIHRhbWLpbSBu428hISE=
+E aqui também não!!!
+
+...- --- -.-.
+.-. . .- .-.. -- . -. - .
+-. ---
+-.-. .- -. ... .-
+-.. .. ... ... --- ..--..
+VOC REALMENTE NO CANSA DISSO?
+
+(https://www.boxentriq.com/code-breaking/atbash-cipher)
+Nfrgl yvn, elf gv wzi fnz wrxz… z xszev kziz z xirkgltizurz wl JIxlwv vhgá vn zotfn oftzi mz 
+rnztvn..
+Ylz hligv. szszszszszszsz…..    
+
+Muito bem, vou te dar uma dica… a chave para a criptografia do QRcode está em algum lugar na 
+imagem..
+Boa sorte. hahahahahahaha…..
+
+3.jpg
+
+Utilizando a senha encontrada no qrcode para o comando steghide, teve um arquivo texto Alq.txt
+como resultado, com o conteudo:
+cGFzc3dvcmQKMTIzNDU2CjEyMzQ1Njc4OQoxMjM0NTY3OAoxMjM0NQoxMjM0NTY3CjEyMzQ1Njc4OTAKcXdlcnR5CmFiYzEyMwoxMTExMTEKMTIzMTIzCmFkbWluCmxldG1laW4KS2FaQG04OAp3ZWxjb21lCm1vbmtleQoxMjM0CnN1bnNoaW5lCjEyMzMyMQoxMjNhYmMKcGFzc3dvcmQxCnBhc3N3MHJkCmZvb3RiYWxsCmlsb3ZleW91CmFkbWluMTIzCndlbGNvbWUxMjMKMTIzcXdlCnByaW5jZXNzCjEyMzY1NAoxMjNhYmMhCnF3ZXJ0eTEyMw==
+
+Que é decodificado em Base64:
+password
+123456
+123456789
+12345678
+12345
+1234567
+1234567890
+qwerty
+abc123
+111111
+123123
+admin
+letmein
+KaZ@m88
+welcome
+monkey
+1234
+sunshine
+123321
+123abc
+password1
+passw0rd
+football
+iloveyou
+admin123
+welcome123
+123qwe
+princess
+123654
+123abc!
+qwerty123
+
+4.jpg
+
+Utilizando as senhas anteriores para o comando steghide na imagem 4.jpg, houve
+sucesso na senha: KaZ@m88
+wrote extracted data to "Flag.txt"
+
+ALQ{NaDeEpW33p2}
+
+

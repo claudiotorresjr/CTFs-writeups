@@ -1,0 +1,5 @@
+C = o texto cifrado
+e = expoente publico
+n = produto de dois numeros primos grandes
+
+ALQ{br1nc4ndo_c0m_RSA_01}

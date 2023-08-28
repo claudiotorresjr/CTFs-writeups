@@ -1,0 +1,5 @@
+É um Gcode.
+
+ao colocar na ferramenta: https://ncviewer.com/
+
+Mostrou-se a flag: ALQ{CNC_e_um_terror}

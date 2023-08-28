@@ -1,0 +1,10 @@
+Uma mensagem foi estranhamente recebida por um dos nossos desenvolvedores mobile.
+
+h-cc-bbb-eee-b-c-fff-h-iiiii
+
+Adicione a palavra encontrada no modelo de flag: ALQ{resposta}
+
+
+Por estar citado no texto que um "desenvolvedor mobile" recebeu a mensagem, busquei
+por cifra relacionadas ao mundo mobile. Durante o percursso encontrei a multi-tap (t9)
+que é utilizada 

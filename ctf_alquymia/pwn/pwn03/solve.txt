@@ -1,0 +1,10 @@
+Descompilado com IDAPRO
+
+./solve 
+ALQARKHAM1337
+s2 = ALQARKHAM1337
+Pegue sua flag: ALQ{?}
+
+nc 45.63.104.42 7213
+ALQARKHAM1337
+Pegue sua flag: ALQ{b4sic_r3verse_21}
