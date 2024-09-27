@@ -1,0 +1,146 @@
+* push rbp (0x114d)
+-> O valor do rbp atual é salvo na stack e o ponteiro da stack (rsp) é decrementado para criar espaço para o valor.
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rsp` (novo)
+|-------------|
+
+* mov rbp, rsp (0x114e)
+-> O valor do rsp (que agora aponta para o rbp antigo) é movido para o rbp.
+-> Sem mudanças visíveis na stack, mas agora rbp aponta para o valor salvo na stack.
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`, `rsp`
+|-------------|
+
+* sub rsp, 0x30 (0x1151)
+-> Espaço adicional de 48 Bytes (0x30) é reservado na stack para variáveis locais. O rsp é decrementado.
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`
+|-------------|
+|     ...     |
+|  (48 Bytes) | <- `rsp` (novo)
+|     ...     |
+
+* mov DWORD PTR [rbp-0x24], edi (0x1155)
+-> O valor de edi é armazenado no endereço rbp - 0x24 (36 Bytes abaixo de rbp).
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`
+|-------------|
+|     ...     |
+|-------------|
+|    edi      | [rbp-0x24]
+|-------------|
+|     ...     |
+|-------------|
+|  (48 bytes) | <- `rsp`
+
+
+* mov QWORD PTR [rbp-0x30], rsi (0x1158)
+-> O valor de rsi é armazenado no endereço rbp - 0x30 (48 bytes abaixo de rbp).
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`
+|-------------|
+|     edi     | [rbp-0x24]
+|-------------|
+|     ...     |
+|-------------|
+|     rsi     | <- `rsp`  [rbp-0x30]
+|-------------|
+|     ...     |
+
+* mov rax,QWORD PTR fs:0x28 (0x115c - 0x1163)
+-> O valor do segmento fs no deslocamento 0x28 é movido para rax.
+Isso é normalmente usado para armazenar a canary (proteção contra stack smashing).
+
+* mov QWORD PTR [rbp-0x8], rax (0x1165)
+-> O valor de rax é armazenado em rbp-0x8 (8 bytes abaixo de rbp).
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`
+|-------------|
+|   canary    | [rbp-0x8]
+|-------------|
+|     edi     | [rbp-0x24]
+|-------------|
+|     ...     |
+|-------------|
+|     rsi     | <- `rsp`  [rbp-0x30]
+|-------------|
+|     ...     |
+
+* xor eax, eax (0x1169)
+-> O registrador eax é zerado.
+Isso prepara o eax para ser usado como retorno da função ou outras operações. Não altera a stack.
+
+* mov DWORD PTR [rbp-0x10],0x2 (0x116b)
+->  Armazena o valor 2 no endereço rbp-0x10 (16 bytes abaixo de rbp).
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`
+|-------------|
+|   canary    | [rbp-0x8]
+|-------------|
+|     0x2     | [rbp-0x10]
+|-------------|
+|     edi     | [rbp-0x24]
+|-------------|
+|     ...     |
+|-------------|
+|     rsi     | <- `rsp`  [rbp-0x30]
+|-------------|
+|     ...     |
+
+* mov BYTE PTR [rbp-0x11],0x42 (0x1172)
+->  Armazena o valor 0x42 (66 em decimal) no endereço rbp-0x11 (17 bytes abaixo de rbp).
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`
+|-------------|
+|   canary    | [rbp-0x8]
+|-------------|
+|     0x2     | [rbp-0x10]
+|-------------|
+| 0x42 (byte) | [rbp-0x11]
+|-------------|
+|     edi     | [rbp-0x24]
+|-------------|
+|     ...     |
+|-------------|
+|     rsi     | <- `rsp`  [rbp-0x30]
+|-------------|
+|     ...     |
+
+* mov DWORD PTR [rbp-0xc],0x434241 (0x1176)
+-> Armazena o valor 0x434241 (ASCII 'ABC') no endereço rbp-0xc (12 bytes abaixo de rbp).
+
+|     ...     |
+|-------------|
+| rbp antigo  | <- `rbp`
+|-------------|
+|   canary    | [rbp-0x8]
+|-------------|
+|     0x2     | [rbp-0x10]
+|-------------|
+| 0x42 (byte) | [rbp-0x11]
+|-------------|
+|  0x434241   | [rbp-0xc]
+|-------------|
+|     edi     | [rbp-0x24]
+|-------------|
+|     ...     |
+|-------------|
+|     rsi     | <- `rsp`  [rbp-0x30]
+|-------------|
+|     ...     |

@@ -1,0 +1,7 @@
+0x000000000040159f : pop rdi ; ret
+0x000000000040159d : pop rsi ; ret
+0x000000000040159b : pop rdx ; ret
+0x000000000040101a : ret
+
+00000000004012f5 g     F .text  00000000000001d2              fill_ammo
+
