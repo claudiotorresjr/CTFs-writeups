@@ -1,0 +1,16 @@
+HTTP/1.1 302 Found
+Server: gunicorn
+Date: Mon, 06 Jul 2026 23:05:12 GMT
+Connection: close
+Content-Type: text/html; charset=utf-8
+Location: /dashboard/
+X-Frame-Options: DENY
+Vary: Cookie
+Content-Length: 0
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+Set-Cookie: messages=W1siX19qc29uX21lc3NhZ2UiLDAsMjUsIldlbGNvbWUgdG8gTmV4YUNvcnAhIiwiIl1d:1wgsNE:DUlq9YC5UYxzC82vcTn-Q0hN3Xu6ToYbA33zUtp15fE; HttpOnly; Path=/; SameSite=Lax
+Set-Cookie: csrftoken=RYGxYelPf665odAZ5VS67uutGGwZYIBP; expires=Mon, 05 Jul 2027 23:05:12 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+Set-Cookie: sessionid=yxrpbpn6b04xl6eop3bcgmj899mguv5u; expires=Mon, 20 Jul 2026 23:05:12 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
+

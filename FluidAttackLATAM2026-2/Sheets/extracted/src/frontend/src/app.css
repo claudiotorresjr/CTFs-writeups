@@ -1,0 +1,176 @@
+:root {
+  --bg: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+  --accent: #3b82f6;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.app {
+  min-height: 100%;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: saturate(150%) blur(6px);
+  background: color-mix(in oklab, var(--bg), transparent 15%);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.brand {
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+.nav {
+  display: flex;
+  gap: 0.75rem;
+}
+.nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.375rem 0.6rem;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  background: var(--surface);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem 1rem;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1rem 1.8rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.h1 {
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  margin: 0 0 0.25rem;
+}
+
+.h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.form {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.field-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input[type="text"] {
+  flex: 1;
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.55rem 0.65rem;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent), transparent 80%);
+}
+
+button,
+.button,
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid color-mix(in oklab, var(--accent), black 10%);
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.02s ease;
+}
+
+button:active,
+.cta:active {
+  transform: translateY(1px);
+}
+
+.links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent), transparent 75%);
+}
+
+@media (min-width: 720px) {
+  .main {
+    grid-template-columns: 1fr 1fr;
+  }
+}

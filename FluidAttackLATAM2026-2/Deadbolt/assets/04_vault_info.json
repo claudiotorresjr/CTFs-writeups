@@ -1,0 +1,9 @@
+{
+  "algorithm": "AES-256-GCM",
+  "backup_format": "iv || ciphertext || tag",
+  "iterations": 10000,
+  "iv_length_bytes": 12,
+  "kdf": "PBKDF2-HMAC-SHA256",
+  "key_length_bits": 256,
+  "tag_length_bits": 128
+}

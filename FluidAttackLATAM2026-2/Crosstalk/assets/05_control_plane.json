@@ -1,0 +1,5 @@
+{
+  "endpoint": "control_plane",
+  "flag": "flag{5ce5a5149e5e4dca}",
+  "version": "v2"
+}

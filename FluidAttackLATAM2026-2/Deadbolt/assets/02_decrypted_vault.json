@@ -1,0 +1,30 @@
+{
+  "created": "2026-03-15T09:22:41Z",
+  "entries": [
+    {
+      "id": 1,
+      "name": "Admin Portal",
+      "notes": "Master admin - DO NOT SHARE",
+      "password": "Fl00d_G4t3s_0p3n!",
+      "url": "https://vault.internal.fluidvault.io/admin",
+      "username": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Corporate Email",
+      "notes": "",
+      "password": "Ema1l_2026!Secure",
+      "url": "https://mail.fluidvault.io",
+      "username": "j.martinez@fluidvault.io"
+    },
+    {
+      "id": 3,
+      "name": "AWS Console",
+      "notes": "Production account - MFA required",
+      "password": "Aws!D3pl0y#Pr0d",
+      "url": "https://console.aws.amazon.com",
+      "username": "deploy-bot"
+    }
+  ],
+  "version": 2
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "event_type": "user.created",
+    "owner": "usr_2377b26bc87f",
+    "rendered_url": "https://attacker.invalid/hb/",
+    "status": "delivered",
+    "subscription_id": "sub_7e02ad14928f",
+    "subscription_name": "heartbeat-leak",
+    "timestamp": 1783383067.9791372
+  },
+  {
+    "event_type": "user.created",
+    "owner": "usr_2377b26bc87f",
+    "rendered_url": "https://attacker.invalid/hb/",
+    "status": "delivered",
+    "subscription_id": "sub_7e02ad14928f",
+    "subscription_name": "heartbeat-leak",
+    "timestamp": 1783383074.9793487
+  },
+  {
+    "event_type": "user.created",
+    "owner": "usr_2377b26bc87f",
+    "rendered_url": "https://attacker.invalid/hb/",
+    "status": "delivered",
+    "subscription_id": "sub_7e02ad14928f",
+    "subscription_name": "heartbeat-leak",
+    "timestamp": 1783383081.979535
+  },
+  {
+    "event_type": "user.created",
+    "owner": "usr_2377b26bc87f",
+    "rendered_url": "https://attacker.invalid/hb/",
+    "status": "delivered",
+    "subscription_id": "sub_7e02ad14928f",
+    "subscription_name": "heartbeat-leak",
+    "timestamp": 1783383088.9797761
+  },
+  {
+    "event_type": "user.created",
+    "owner": "usr_2377b26bc87f",
+    "rendered_url": "https://attacker.invalid/hb/",
+    "status": "delivered",
+    "subscription_id": "sub_7e02ad14928f",
+    "subscription_name": "heartbeat-leak",
+    "timestamp": 1783383095.979967
+  },
+  {
+    "event_type": "user.created",
+    "owner": "usr_2377b26bc87f",
+    "rendered_url": "https://attacker.invalid/hb/",
+    "status": "delivered",
+    "subscription_id": "sub_7e02ad14928f",
+    "subscription_name": "heartbeat-leak",
+    "timestamp": 1783383102.9801254
+  },
+  {
+    "event_type": "system.heartbeat",
+    "owner": "usr_2377b26bc87f",
+    "rendered_url": "https://attacker.invalid/hb/fb6de08af8dc20842150be3175bbbbe05b2b08e2c1260d1e",
+    "status": "system_broadcast",
+    "subscription_id": "sub_7e02ad14928f",
+    "subscription_name": "heartbeat-leak",
+    "timestamp": 1783383108.9736044
+  }
+]

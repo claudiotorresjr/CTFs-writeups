@@ -1,0 +1,10 @@
+{
+  "counter_value": "0x4c",
+  "exit": "0x40b0d0",
+  "host": "24ab566e9b9668e2.chal.ctf.ae",
+  "offset_to_counter": 76,
+  "offset_to_rip": 88,
+  "payload_length": 116,
+  "ret": "0x40101a",
+  "win": "0x401b85"
+}

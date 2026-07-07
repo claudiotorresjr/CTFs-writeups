@@ -1,0 +1,13 @@
+{
+  "file_metadata": [
+    {
+      "metadata": {
+        "preview": "{\n  \"session_secret\": \"24b4d270a11a147fb50c224add0c6b73fa1aab49e9d6bc615a1f2119e20ff7b677ecdd2bf44f142db85b764880003925\",\n  \"version\": \"2.1.0\"\n}",
+        "size": 144
+      },
+      "path": "/app/.internal/config.json"
+    }
+  ],
+  "status": "triggered",
+  "workflow_id": "leak-config"
+}

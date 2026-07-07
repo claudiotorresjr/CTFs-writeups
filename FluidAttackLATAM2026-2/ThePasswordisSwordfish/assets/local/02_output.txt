@@ -1,0 +1,8 @@
+===========================================
+  FluidSec Vault v2.0 - Secure Login
+===========================================
+
+Authenticate to access the vault.
+
+Password length: Password: Access denied.
+Error: could not read flag.

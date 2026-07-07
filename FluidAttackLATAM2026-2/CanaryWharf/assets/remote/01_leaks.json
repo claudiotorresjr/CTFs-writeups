@@ -1,0 +1,7 @@
+{
+  "canary": "0xfe411a5cf7cda000",
+  "libc_base": "0x7f62471ab000",
+  "pie_base": "0x565543b1f000",
+  "pie_return_leak": "0x565543b205e7",
+  "stdout_leak": "0x7f62473c6780"
+}

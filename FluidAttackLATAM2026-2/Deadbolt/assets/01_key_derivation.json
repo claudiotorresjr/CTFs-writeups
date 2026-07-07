@@ -1,0 +1,8 @@
+{
+  "device_id": "c8e21b06",
+  "iterations": 10000,
+  "key_hex": "c70cf882eaf48e1da954f0105594fef19704aeae00e86756501957a033faa91a",
+  "passphrase": "fluidvault_master_seed_2026c8e21b06",
+  "salt_hex": "a915c3e00dbb5a55ba13d7cdaf3a126e",
+  "serial": "DEFAULT_DEVICE_ID"
+}

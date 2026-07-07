@@ -1,0 +1,9 @@
+{
+  "event_type": "system.heartbeat",
+  "owner": "usr_2377b26bc87f",
+  "rendered_url": "https://attacker.invalid/hb/fb6de08af8dc20842150be3175bbbbe05b2b08e2c1260d1e",
+  "status": "system_broadcast",
+  "subscription_id": "sub_7e02ad14928f",
+  "subscription_name": "heartbeat-leak",
+  "timestamp": 1783383108.9736044
+}

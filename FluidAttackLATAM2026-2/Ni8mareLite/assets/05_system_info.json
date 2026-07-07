@@ -1,0 +1,11 @@
+{
+  "environment": "production",
+  "features": [
+    "webhook_triggers",
+    "expression_eval",
+    "scheduled_workflows"
+  ],
+  "platform": "FlowForge",
+  "python": "3.12",
+  "version": "2.1.0"
+}

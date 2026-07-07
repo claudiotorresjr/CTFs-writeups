@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SurveyHub — Survey catalog</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0b0d13;
+    --surface:#12151e;
+    --surface-2:#171b26;
+    --surface-3:#1d2230;
+    --border:rgba(255,255,255,0.07);
+    --border-strong:rgba(255,255,255,0.12);
+    --text:rgba(255,255,255,0.93);
+    --text-2:rgba(255,255,255,0.62);
+    --text-3:rgba(255,255,255,0.40);
+    --text-4:rgba(255,255,255,0.24);
+    --accent:#7c8cff;
+    --accent-hover:#94a2ff;
+    --accent-press:#6a7bf2;
+    --accent-soft:rgba(124,140,255,0.13);
+    --accent-ring:rgba(124,140,255,0.45);
+    --success:#46c98b;--success-soft:rgba(70,201,139,0.13);
+    --warning:#e7b25a;--warning-soft:rgba(231,178,90,0.13);
+    --danger:#f0736f;--danger-soft:rgba(240,115,111,0.12);
+    --tech:#7c8cff;--tech-soft:rgba(124,140,255,0.14);
+    --health:#f0736f;--health-soft:rgba(240,115,111,0.14);
+    --edu:#b07cff;--edu-soft:rgba(176,124,255,0.14);
+    --env:#46c98b;--env-soft:rgba(70,201,139,0.14);
+    --biz:#e7b25a;--biz-soft:rgba(231,178,90,0.14);
+    --r-sm:6px;--r-md:9px;--r-lg:13px;
+    --font-sans:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-mono:'SF Mono',ui-monospace,'Cascadia Code','JetBrains Mono','Consolas',monospace;
+    --shadow:0 1px 2px rgba(0,0,0,0.35),0 8px 24px -12px rgba(0,0,0,0.55);
+  }
+  html{font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{font-family:var(--font-sans);background:var(--bg);color:var(--text);min-height:100dvh}
+  ::selection{background:var(--accent-soft);color:#fff}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--accent-ring);outline-offset:2px;border-radius:4px}
+
+  /* faint background grid for depth */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(900px 500px at 78% -8%,rgba(124,140,255,0.07),transparent 60%),
+      radial-gradient(700px 480px at 0% 100%,rgba(70,201,139,0.04),transparent 55%);}
+
+  .app{display:flex;min-height:100dvh}
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{width:236px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);
+    display:flex;flex-direction:column;position:sticky;top:0;height:100dvh}
+  .brand{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--border)}
+  .brand-mark{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--accent),#5d6ef0);box-shadow:0 4px 12px -4px rgba(124,140,255,0.6),inset 0 1px 0 rgba(255,255,255,0.25)}
+  .brand-mark svg{width:17px;height:17px;color:#fff}
+  .brand-name{font-weight:650;font-size:15px;letter-spacing:-0.015em}
+  .brand-name b{color:var(--text)}.brand-name span{color:var(--text-3);font-weight:500}
+
+  .nav{padding:12px 10px;flex:1;display:flex;flex-direction:column;gap:1px}
+  .nav-section{font-size:10.5px;font-weight:600;color:var(--text-4);text-transform:uppercase;letter-spacing:0.07em;padding:14px 10px 6px}
+  .nav-link{position:relative;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r-sm);
+    font-size:13px;font-weight:500;color:var(--text-2);cursor:pointer;
+    transition:background 140ms ease,color 140ms ease}
+  .nav-link svg{width:16px;height:16px;flex-shrink:0;color:var(--text-3);transition:color 140ms ease}
+  .nav-link:hover{background:rgba(255,255,255,0.045);color:var(--text)}
+  .nav-link:hover svg{color:var(--text-2)}
+  .nav-link.active{background:var(--accent-soft);color:#fff}
+  .nav-link.active svg{color:var(--accent)}
+  .nav-link.active::before{content:"";position:absolute;left:-10px;top:50%;transform:translateY(-50%);
+    width:3px;height:17px;border-radius:0 3px 3px 0;background:var(--accent)}
+  .nav-badge{margin-left:auto;font-size:11px;font-weight:600;color:var(--text-3);font-variant-numeric:tabular-nums}
+
+  .sidebar-foot{padding:10px;border-top:1px solid var(--border)}
+  .user{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r-md)}
+  .avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;
+    font-size:11px;font-weight:650;color:var(--accent);background:var(--accent-soft);border:1px solid var(--border-strong)}
+  .user-meta{min-width:0;line-height:1.35}
+  .user-name{font-size:13px;font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .user-role{font-size:11px;color:var(--text-3)}
+
+  /* ---------- Main ---------- */
+  .main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{height:52px;flex-shrink:0;display:flex;align-items:center;gap:12px;padding:0 22px;
+    border-bottom:1px solid var(--border);background:rgba(11,13,19,0.72);backdrop-filter:blur(10px);
+    position:sticky;top:0;z-index:20}
+  .topbar .mobile-brand{display:none;align-items:center;gap:8px;font-weight:650;font-size:14px}
+  .crumb{font-size:12.5px;color:var(--text-3);display:flex;align-items:center;gap:7px}
+  .crumb b{color:var(--text);font-weight:600}
+  .crumb svg{width:13px;height:13px;color:var(--text-4)}
+  .topbar-spacer{flex:1}
+  .env-pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:550;color:var(--text-2);
+    padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:var(--surface-2)}
+  .env-dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 0 3px var(--success-soft)}
+
+  .content{flex:1;overflow-y:auto;padding:24px 22px 56px;max-width:1180px;width:100%}
+
+  .page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+  .page-title{font-size:21px;font-weight:680;letter-spacing:-0.025em;text-wrap:balance}
+  .page-sub{font-size:13px;color:var(--text-2);margin-top:3px}
+  .count-chip{display:inline-flex;align-items:baseline;gap:5px;padding:7px 13px;border:1px solid var(--border);
+    border-radius:999px;background:var(--surface);font-size:12px;color:var(--text-2);white-space:nowrap;box-shadow:var(--shadow)}
+  .count-chip b{font-size:14px;color:var(--text);font-weight:650;font-variant-numeric:tabular-nums;font-family:var(--font-mono)}
+
+  /* ---------- Stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+  .stat{position:relative;padding:15px 16px;background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .stat::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px;background:var(--bar)}
+  .stat-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .stat-label{font-size:11px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em}
+  .stat-ico{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--ico-bg)}
+  .stat-ico svg{width:14px;height:14px;color:var(--ico-fg)}
+  .stat-value{font-size:25px;font-weight:680;margin-top:8px;font-variant-numeric:tabular-nums;
+    font-family:var(--font-mono);letter-spacing:-0.02em}
+  .stat-foot{font-size:11.5px;color:var(--text-3);margin-top:2px}
+  .stat.s-results{--bar:var(--accent);--ico-bg:var(--accent-soft);--ico-fg:var(--accent)}
+  .stat.s-cats{--bar:var(--success);--ico-bg:var(--success-soft);--ico-fg:var(--success)}
+  .stat.s-auth{--bar:var(--warning);--ico-bg:var(--warning-soft);--ico-fg:var(--warning)}
+  .stat.s-results .stat-value{color:var(--accent)}
+  .stat.s-cats .stat-value{color:var(--success)}
+  .stat.s-auth .stat-value{color:var(--warning)}
+
+  /* ---------- Filter panel ---------- */
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);margin-bottom:18px}
+  .panel-head{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--border)}
+  .panel-head svg{width:15px;height:15px;color:var(--text-3)}
+  .panel-head h2{font-size:13px;font-weight:600;letter-spacing:-0.01em}
+  .panel-head .hint{margin-left:auto;font-size:11.5px;color:var(--text-4)}
+  .filters{display:flex;gap:10px;padding:14px 16px;flex-wrap:wrap;align-items:flex-end}
+  .field{display:flex;flex-direction:column;gap:6px;flex:1;min-width:170px}
+  .field.cat{flex:0 0 175px}
+  .field label{font-size:11px;font-weight:600;color:var(--text-3);letter-spacing:0.01em;display:flex;align-items:center;gap:6px}
+  .field label code{font-family:var(--font-mono);font-size:10px;color:var(--text-4);font-weight:500}
+  .input{height:38px;padding:0 12px;width:100%;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--r-md);color:var(--text);font-size:13px;font-family:var(--font-sans);outline:none;
+    transition:border-color 140ms ease,box-shadow 140ms ease,background 140ms ease}
+  .input::placeholder{color:var(--text-4)}
+  .input:hover{border-color:var(--border-strong)}
+  .input:focus{border-color:var(--accent);background:var(--surface);box-shadow:0 0 0 3px var(--accent-soft)}
+  select.input{appearance:none;cursor:pointer;padding-right:34px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 11px center}
+  .actions{display:flex;gap:8px;flex-shrink:0}
+  .btn{height:38px;padding:0 15px;border:1px solid transparent;border-radius:var(--r-md);font-size:13px;font-weight:600;
+    cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;
+    font-family:inherit;transition:transform 90ms ease,background 140ms ease,border-color 140ms ease,color 140ms ease}
+  .btn svg{width:14px;height:14px}
+  .btn:active{transform:scale(0.96)}
+  .btn-primary{background:var(--accent);color:#0b0d13;box-shadow:0 4px 14px -6px rgba(124,140,255,0.7)}
+  .btn-primary:hover{background:var(--accent-hover)}
+  .btn-primary:active{background:var(--accent-press)}
+  .btn-ghost{background:var(--surface-2);color:var(--text-2);border-color:var(--border)}
+  .btn-ghost:hover{background:var(--surface-3);color:var(--text);border-color:var(--border-strong)}
+
+  /* active filter chips */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 14px}
+  .chips:empty{display:none}
+  .chip{display:inline-flex;align-items:center;gap:7px;padding:4px 6px 4px 10px;border-radius:999px;
+    background:var(--accent-soft);border:1px solid rgba(124,140,255,0.22);font-size:11.5px;color:var(--text);
+    animation:pop 200ms cubic-bezier(0.2,0,0,1) both}
+  .chip code{font-family:var(--font-mono);font-size:10.5px;color:var(--accent)}
+  .chip button{width:17px;height:17px;border:none;border-radius:50%;background:transparent;color:var(--text-3);
+    cursor:pointer;display:grid;place-items:center;transition:background 120ms,color 120ms}
+  .chip button:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+  .chip button svg{width:9px;height:9px}
+
+  /* ---------- Request inspector ---------- */
+  .request{display:flex;align-items:center;gap:10px;padding:10px 13px;margin-bottom:14px;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--shadow)}
+  .req-method{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--success);
+    background:var(--success-soft);padding:3px 8px;border-radius:5px;flex-shrink:0}
+  .req-path{font-family:var(--font-mono);font-size:12px;color:var(--text-2);flex:1;min-width:0;
+    overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .req-path::-webkit-scrollbar{display:none}
+  .req-path b{color:var(--text)}
+  .req-status{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--text-3);
+    padding:3px 9px;border-radius:5px;background:var(--surface-2);border:1px solid var(--border);flex-shrink:0;
+    font-variant-numeric:tabular-nums;transition:color 140ms,background 140ms,border-color 140ms}
+  .req-status.ok{color:var(--success);background:var(--success-soft);border-color:transparent}
+  .req-status.err{color:var(--danger);background:var(--danger-soft);border-color:transparent}
+
+  .error-banner{display:none;align-items:center;gap:10px;padding:11px 14px;margin-bottom:14px;
+    background:var(--danger-soft);border:1px solid rgba(240,115,111,0.28);border-radius:var(--r-md);
+    color:var(--danger);font-size:13px}
+  .error-banner svg{width:16px;height:16px;flex-shrink:0}
+
+  /* ---------- Table ---------- */
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+    overflow:hidden;box-shadow:var(--shadow)}
+  .table-scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;min-width:640px}
+  thead th{position:sticky;top:0;padding:10px 16px;text-align:left;font-size:10.5px;font-weight:600;
+    color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em;background:var(--surface-2);
+    border-bottom:1px solid var(--border);white-space:nowrap}
+  tbody td{padding:13px 16px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  @media(hover:hover){tbody tr.data-row:hover td{background:rgba(255,255,255,0.022)}}
+  .data-row{animation:rowIn .34s cubic-bezier(0.2,0,0,1) both;animation-delay:calc(var(--i,0)*26ms)}
+  .c-id{font-family:var(--font-mono);font-size:12px;color:var(--text-4);font-variant-numeric:tabular-nums;width:54px}
+  .c-title{font-weight:550;color:var(--text);max-width:340px}
+  .c-author{color:var(--text-2);white-space:nowrap}
+  .c-desc{color:var(--text-3);max-width:330px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tag{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:6px;font-size:11px;
+    font-weight:600;background:var(--tag-soft,var(--surface-3));color:var(--tag-fg,var(--text-2))}
+  .tag::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+  .tag.tech{--tag-soft:var(--tech-soft);--tag-fg:var(--tech)}
+  .tag.health{--tag-soft:var(--health-soft);--tag-fg:var(--health)}
+  .tag.edu{--tag-soft:var(--edu-soft);--tag-fg:var(--edu)}
+  .tag.env{--tag-soft:var(--env-soft);--tag-fg:var(--env)}
+  .tag.biz{--tag-soft:var(--biz-soft);--tag-fg:var(--biz)}
+
+  /* states */
+  .empty{padding:54px 24px;text-align:center}
+  .empty-ico{width:46px;height:46px;margin:0 auto 14px;border-radius:12px;display:grid;place-items:center;
+    background:var(--surface-2);border:1px solid var(--border)}
+  .empty-ico svg{width:21px;height:21px;color:var(--text-3)}
+  .empty h3{font-size:14px;font-weight:600;color:var(--text);margin-bottom:5px}
+  .empty p{font-size:12.5px;color:var(--text-3);max-width:300px;margin:0 auto 14px;line-height:1.55}
+  .empty .btn{height:34px}
+  .skel-cell{display:block;height:11px;border-radius:5px;
+    background:linear-gradient(90deg,var(--surface-2) 25%,var(--surface-3) 37%,var(--surface-2) 63%);
+    background-size:400% 100%;animation:shimmer 1.4s ease infinite}
+
+  @keyframes rowIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes shimmer{0%{background-position:100% 0}100%{background-position:0 0}}
+  @keyframes pop{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:none}}
+
+  @media (max-width:960px){
+    .sidebar{width:62px}
+    .brand{justify-content:center;padding:16px 0}
+    .brand-name,.nav-section,.user-meta,.nav-badge{display:none}
+    .nav-link{justify-content:center}
+    .nav-link.active::before{left:-10px}
+    .user{justify-content:center;padding:8px 0}
+  }
+  @media (max-width:720px){
+    .sidebar{display:none}
+    .topbar .mobile-brand{display:flex}
+    .topbar .crumb{display:none}
+    .stats{grid-template-columns:1fr;gap:10px}
+    .field,.field.cat{flex:1 1 100%}
+    .actions{width:100%}.actions .btn{flex:1}
+    .page-head{flex-direction:column;align-items:flex-start;gap:12px}
+    .content{padding:18px 14px 48px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L20 5"/><path d="M21 12v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10"/></svg>
+      </div>
+      <div class="brand-name"><b>Survey</b><span>Hub</span></div>
+    </div>
+    <nav class="nav">
+      <div class="nav-section">Workspace</div>
+      <a class="nav-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        Surveys <span class="nav-badge">12</span>
+      </a>
+      <a class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Respondents
+      </a>
+      <a class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exports
+      </a>
+      <div class="nav-section">Admin</div>
+      <a class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+        Access control
+      </a>
+      <a class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V12a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="user">
+        <div class="avatar">GV</div>
+        <div class="user-meta">
+          <div class="user-name">Guest viewer</div>
+          <div class="user-role">Read-only access</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand">
+        <div class="brand-mark" style="width:24px;height:24px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L20 5"/><path d="M21 12v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10"/></svg></div>
+        SurveyHub
+      </div>
+      <div class="crumb">Workspace <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg> <b>Surveys</b></div>
+      <div class="topbar-spacer"></div>
+      <span class="env-pill"><span class="env-dot"></span>API live</span>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <div>
+          <div class="page-title">Survey catalog</div>
+          <div class="page-sub">Browse and filter every published survey in the workspace.</div>
+        </div>
+        <div class="count-chip"><b id="count-num">0</b> surveys matched</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat s-results">
+          <div class="stat-top">
+            <div class="stat-label">Results</div>
+            <div class="stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+          </div>
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-foot">surveys in this view</div>
+        </div>
+        <div class="stat s-cats">
+          <div class="stat-top">
+            <div class="stat-label">Categories</div>
+            <div class="stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+          </div>
+          <div class="stat-value" id="stat-categories">—</div>
+          <div class="stat-foot">distinct categories</div>
+        </div>
+        <div class="stat s-auth">
+          <div class="stat-top">
+            <div class="stat-label">Authors</div>
+            <div class="stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          </div>
+          <div class="stat-value" id="stat-authors">—</div>
+          <div class="stat-foot">unique authors</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <h2>Filters</h2>
+          <span class="hint">Queries the public surveys API</span>
+        </div>
+        <div class="filters">
+          <div class="field">
+            <label for="q-title">Title <code>title__icontains</code></label>
+            <input class="input" type="text" id="q-title" placeholder="Search by title…" autocomplete="off">
+          </div>
+          <div class="field cat">
+            <label for="q-category">Category <code>category</code></label>
+            <select class="input" id="q-category">
+              <option value="">All categories</option>
+              <option value="Technology">Technology</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+              <option value="Environment">Environment</option>
+              <option value="Business">Business</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-author">Author <code>author__icontains</code></label>
+            <input class="input" type="text" id="q-author" placeholder="Search by author…" autocomplete="off">
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="doSearch()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+              Search
+            </button>
+            <button class="btn btn-ghost" onclick="clearSearch()">Reset</button>
+          </div>
+        </div>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <div class="request">
+        <span class="req-method">GET</span>
+        <code class="req-path" id="url-display">/api/surveys/</code>
+        <span class="req-status" id="req-status">ready</span>
+      </div>
+
+      <div class="error-banner" id="error-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="error-text"></span>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+var CAT_CLASS={Technology:'tech',Health:'health',Education:'edu',Environment:'env',Business:'biz'};
+
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function $(id){return document.getElementById(id);}
+
+function buildParams(){
+  var p=new URLSearchParams();
+  var t=$('q-title').value.trim();
+  var c=$('q-category').value;
+  var a=$('q-author').value.trim();
+  if(t)p.set('title__icontains',t);
+  if(c)p.set('category',c);
+  if(a)p.set('author__icontains',a);
+  return p;
+}
+
+function updateUrl(params){
+  var qs=params.toString();
+  var url='/api/surveys/'+(qs?'?'+qs:'');
+  $('url-display').innerHTML='<b>/api/surveys/</b>'+escHtml(qs?'?'+qs:'');
+  return url;
+}
+
+function renderChips(params){
+  var box=$('chips');
+  var labels={'title__icontains':'title','category':'category','author__icontains':'author'};
+  var html='';
+  params.forEach(function(val,key){
+    html+='<span class="chip"><code>'+escHtml(labels[key]||key)+'</code>'+escHtml(val)+
+      '<button title="Remove filter" onclick="removeFilter(\''+key+'\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span>';
+  });
+  box.innerHTML=html;
+}
+
+function removeFilter(key){
+  if(key==='title__icontains')$('q-title').value='';
+  else if(key==='category')$('q-category').value='';
+  else if(key==='author__icontains')$('q-author').value='';
+  doSearch();
+}
+
+function setStatus(state,text){
+  var el=$('req-status');
+  el.className='req-status'+(state?' '+state:'');
+  el.textContent=text;
+}
+
+function showSkeleton(){
+  var widths=['38px','62%','74px','42%','80%'];
+  var rows='';
+  for(var r=0;r<6;r++){
+    rows+='<tr>';
+    for(var c=0;c<5;c++){rows+='<td><span class="skel-cell" style="width:'+widths[c]+'"></span></td>';}
+    rows+='</tr>';
+  }
+  $('table-body').innerHTML=rows;
+}
+
+function renderRows(rows){
+  var tb=$('table-body');
+  if(!rows.length){
+    tb.innerHTML='<tr><td colspan="5"><div class="empty">'+
+      '<div class="empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>'+
+      '<h3>No surveys match these filters</h3>'+
+      '<p>Try a different term or clear the filters to see everything in the catalog.</p>'+
+      '<button class="btn btn-ghost" onclick="clearSearch()">Clear filters</button>'+
+      '</div></td></tr>';
+    return;
+  }
+  tb.innerHTML=rows.map(function(s,i){
+    var cls=CAT_CLASS[s.category]||'';
+    return '<tr class="data-row" style="--i:'+i+'">'+
+      '<td class="c-id">'+escHtml(s.id)+'</td>'+
+      '<td class="c-title">'+escHtml(s.title)+'</td>'+
+      '<td><span class="tag '+cls+'">'+escHtml(s.category)+'</span></td>'+
+      '<td class="c-author">'+escHtml(s.author)+'</td>'+
+      '<td class="c-desc">'+escHtml(s.description)+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+async function doSearch(){
+  var p=buildParams();
+  var url=updateUrl(p);
+  renderChips(p);
+  $('error-box').style.display='none';
+  setStatus('','sending…');
+  showSkeleton();
+  var t0=performance.now();
+  try{
+    var r=await fetch(url);
+    var ms=Math.max(1,Math.round(performance.now()-t0));
+    var d=await r.json();
+    if(!r.ok){
+      setStatus('err',r.status+' · '+ms+'ms');
+      $('error-text').textContent=d.error||('Request failed with status '+r.status);
+      $('error-box').style.display='flex';
+      renderRows([]);
+      return;
+    }
+    var results=d.results||[];
+    setStatus('ok',r.status+' · '+ms+'ms · '+d.count+' rows');
+    renderRows(results);
+    $('count-num').textContent=d.count;
+    $('stat-total').textContent=d.count;
+    var cats=new Set(results.map(function(s){return s.category;}));
+    var auths=new Set(results.map(function(s){return s.author;}));
+    $('stat-categories').textContent=cats.size;
+    $('stat-authors').textContent=auths.size;
+  }catch(e){
+    setStatus('err','network error');
+    $('error-text').textContent='Could not reach the surveys API. Check your connection and try again.';
+    $('error-box').style.display='flex';
+    renderRows([]);
+  }
+}
+
+function clearSearch(){
+  $('q-title').value='';
+  $('q-category').value='';
+  $('q-author').value='';
+  doSearch();
+}
+
+['q-title','q-author'].forEach(function(id){
+  $(id).addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
+});
+$('q-category').addEventListener('change',doSearch);
+
+doSearch();
+</script>
+</body>
+</html>
